@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true"> <!-- Ativando o modo de depuração para Logback -->
+
+    <!-- Configuração do diretório de logs -->
+    <property name="LOG_PATH" value="logs" /> <!-- Ajuste o caminho conforme necessário -->
+
+    <!-- Configuração do appender de arquivo com rotação diária -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Nome do arquivo de log atual (Removido para usar apenas o padrão de rotação) -->
+        <!-- <file>${LOG_PATH}/spring.log</file> -->
+
+        <!-- Definição de política de rotação -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Arquivo de log rotacionado com data no nome -->
+            <fileNamePattern>${LOG_PATH}/spring.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Quantidade de dias para manter os logs antigos -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+      <encoder>
+        <charset>UTF-8</charset>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS, America/Sao_Paulo} %-5level - %msg%n#---------------------------------------------------------------------------------------------------------------------#%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Configuração do appender de console -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset> <!-- Definindo a codificação como UTF-8 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS, America/Sao_Paulo} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+     <!-- Logger para logs de INFO direcionado ao console -->
+    <logger name="com.gerenciamento.financeiro_pessoal" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- Configuração do logger raiz com nível de log ERROR -->
+    <root level="ERROR">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

@@ -1,0 +1,17 @@
+Sistema de gerenciamento financeiro pessoal. Nele, você poderia incluir funcionalidades como:
+
+Cadastro de Transações: Permitir ao usuário cadastrar receitas e despesas, com campos para categoria, data, valor e descrição.
+
+Classificação de Categorias: Criar categorias para receitas e despesas, como "Alimentação", "Transporte", "Salário" e "Investimentos". Isso pode envolver uma tabela extra no banco de dados para armazenar essas categorias.
+
+Relatórios e Gráficos: Implementar relatórios mensais ou semanais que mostrem o fluxo de caixa, o saldo atual e gráficos de despesas por categoria. A integração com bibliotecas para gerar gráficos (como JavaFX ou Chart.js) tornaria o sistema visualmente interessante.
+
+Definição de Metas Financeiras: Permitir que o usuário defina metas financeiras, como "Guardar R$ 5000 até dezembro". Pode ser um ótimo recurso para praticar cálculos e lógica de progressão em Java.
+
+Controle de Dívidas e Empréstimos: Adicionar uma seção para gerenciamento de dívidas, onde o usuário possa registrar as pessoas para quem deve, os valores e as datas previstas de pagamento.
+
+Exportação de Dados: Permitir que o usuário exporte as transações em formato CSV ou PDF, proporcionando uma prática extra em manipulação de arquivos e geração de relatórios
+
+
+
+Esse projeto mostra domínio de várias funcionalidades práticas, além de ser um tema bem atual que interessa a muitos.

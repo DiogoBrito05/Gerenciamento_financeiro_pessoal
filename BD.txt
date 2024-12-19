@@ -1,0 +1,67 @@
+CREATE TABLE Usuarios (
+  UsuarioID INT AUTO_INCREMENT PRIMARY KEY,
+  Nome Varchar(50) NOT NULL,
+  Email VARCHAR(50) NOT NULL,
+  Senha VARCHAR(10) NOT NULL,
+  CPF VARCHAR(11) NOT NULL,
+  UsuarioAdmin VARCHAR(1) NOT NULL,
+  Usuario_Troca_Senha VARCHAR(1) NOT NULL
+);
+
+CREATE TABLE Roles (
+  RoleID INT AUTO_INCREMENT PRIMARY KEY,
+  Nome_Role VARCHAR(50) NOT NULL
+);
+
+INSERT INTO Roles (Nome_Role) VALUES ('ADMIN');
+INSERT INTO Roles (Nome_Role) VALUES ('USER');
+
+CREATE TABLE Usuario_Roles (
+  UsuarioID INT,
+  RoleID INT,
+  PRIMARY KEY (UsuarioID, RoleID),
+  FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID) ON DELETE CASCADE,
+  FOREIGN KEY (RoleID) REFERENCES Roles(RoleID) ON DELETE CASCADE
+);
+
+CREATE TABLE Categorias (
+  CategoriaID INT AUTO_INCREMENT PRIMARY KEY,
+  Tipo VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Transacoes (
+  TransacaoID INT AUTO_INCREMENT PRIMARY KEY,
+  CategoriaID INT,
+  UsuarioID INT,
+  Data_Transacao DATE NOT NULL,
+  Descricao VARCHAR(50),
+  Valor DECIMAL(10, 2),
+  FOREIGN KEY (CategoriaID) REFERENCES Categorias(CategoriaID),
+  FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID)
+);
+
+CREATE TABLE Metas_Financeiras (
+  MetaID INT AUTO_INCREMENT PRIMARY KEY,
+  UsuarioID INT,
+  Valor_Meta DECIMAL(10, 2) NOT NULL,
+  Data_Inicio DATE,
+  Data_Fim DATE,
+  FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID)
+);
+
+CREATE TABLE Divida (
+  DividaID INT AUTO_INCREMENT PRIMARY KEY,
+  UsuarioID INT,
+  Nome_Credor VARCHAR(50),
+  Valor_Total DECIMAL(10, 2),
+  Data_Vencimento DATE,
+  FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID)
+);
+
+CREATE TABLE Pagamento_Divida (
+  PagamentoID INT AUTO_INCREMENT PRIMARY KEY,
+  DividaID INT,
+  Valor_Pago DECIMAL(10, 2),
+  Data_Pagamento DATE,
+  FOREIGN KEY (DividaID) REFERENCES Divida(DividaID)
+);
